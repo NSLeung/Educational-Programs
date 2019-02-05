@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_STR_SIZE 256
+int main(){
+  // printf("Hello, World!\n");
+  int a[3] = {1, 2, 3};
+  char str[4] = "hi";
+  char readStr[40];
+  // printf("%d\n",a[2]);
+  // printf("%p",str[3]);
+
+  //scanf unsafe
+  // scanf("%s",readStr);
+
+  //fgets(char* s, int size, FILE* stream)
+  /**
+   * fgets reads string from stream - stops reading until end of line (generally
+   * better for parsing IO)
+   * fscanf reads until white space and does not store
+   * @param readStr      array of characters to store
+   * @param MAX_STR_SIZE size of array
+   * @param stdin        stream to read
+   */
+  fgets(readStr, MAX_STR_SIZE, stdin);
+  /* Remove trailing newline, if there. */
+
+    if ((strlen(readStr) > 0) && (readStr[strlen (readStr) - 1] == '\n'))
+        readStr[strlen (readStr) - 1] = '\0';
+  printf("%s and %s",readStr, str );
+  return 0;
+}
