@@ -22,11 +22,15 @@ int main(){
    * @param MAX_STR_SIZE size of array
    * @param stdin        stream to read
    */
-  fgets(readStr, MAX_STR_SIZE, stdin);
+  // fgets(readStr, MAX_STR_SIZE, stdin);
   /* Remove trailing newline, if there. */
 
     if ((strlen(readStr) > 0) && (readStr[strlen (readStr) - 1] == '\n'))
         readStr[strlen (readStr) - 1] = '\0';
-  printf("%s and %s",readStr, str );
+  // printf("%s and %s",readStr, str );
+  int minutes = 1;
+  int seconds = 10;
+  sprintf(readstr, "%02d:%02d", minutes, seconds);
+  printf(readstr);
   return 0;
 }
