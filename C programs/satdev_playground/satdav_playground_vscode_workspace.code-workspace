@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "C:\\Users\\Leungi5368\\Documents\\UIUC\\Sophomore 2018\\Sem A\\CS225\\Educational Scripts\\Educational-Programs"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"stdint.h": "c",
+			"ctype.h": "c",
+			"stdio.h": "c"
+		}
+	}
+}
