@@ -1,18 +1,22 @@
+#%%
 #!/usr/bin/python3.6
-"""
-Created on Sat Jul 20 23:45:06 2019
-Reddit scraper using the Reddit API (PRAW)
-@author: Joseph Lai
-"""
-import argparse
-import sys
+'''
+TODO: make smarter algorithm to determine what things to save instead
+of generating and re-writing every single file each time
+like a patch macro to redo, or do smart update
+'''
 import praw
-from prawcore import NotFound, PrawcoreException
-import csv
-import datetime as dt
-
-### Get current date
-date = dt.datetime.now().strftime("%m-%d-%Y")
+import sys
+import csv 
+from praw.models import Submission
+from prawcore import NotFound, PrawcoreException, Forbidden
+import pprint
+import os
+import sys
+import json
+from collections import OrderedDict
+import time
+from time import gmtime, strftime
 
 ### Reddit API Credentials
 c_id = "x6gF21WvdUDLNA"               # Personal Use Script (14 char)
@@ -21,363 +25,6 @@ u_a = "Saved_Scraper"               # App name
 usrnm = "nsl3109"      # Reddit username
 passwd = "Applebob1!"     # Reddit login password
 
-### Subreddit categories
-categories = ["Hot","New","Controversial","Top","Rising","Search"]
-short_cat = [cat[0] for cat in categories]
-
-### Confirm or deny options
-options = ["y","n"]
-
-### Check if subreddit exists and catch PRAW exceptions
-def existence(reddit,sub_list,parser):
-    found = []
-    not_found = []
-
-    try:
-        for sub in sub_list:
-            try:
-                reddit.subreddits.search_by_name(sub, exact = True)
-                found.append(sub)
-            except NotFound:
-                not_found.append(sub)
-    except PrawcoreException as error:
-        print("\nERROR: %s" % error)
-        print("Please recheck Reddit credentials.")
-        if parser.parse_args().basic == False:
-            print("\nExiting.")
-            parser.exit()
-
-    return found,not_found
-
-### Print Reddit scraper title
-def title():
-    print("""==============================================================
-    Reddit Scraper - Scrape Any Subreddit Of Your Choosing
-==============================================================
-    *Scraper captures posts from all time on the subreddit*""")
-
-#-------------------------------------------------------------------------------
-#                       Command-line Interface Functions
-#-------------------------------------------------------------------------------
-### Get args
-def parse_args():
-    parser = argparse.ArgumentParser(usage = "scraper.py [-h] [-b] [-s SUBREDDIT [H|N|C|T|R|S] RESULTS_OR_KEYWORDS]", \
-                                    formatter_class = argparse.RawDescriptionHelpFormatter, \
-                                    description = "Universal Reddit Scraper - Scrape any subreddit of your choosing", \
-                                    epilog = """\
-subreddit categories:
-   H,h     selecting Hot category
-   N,n     selecting New category
-   C,c     selecting Controversial category
-   T,t     selecting Top category
-   R,r     selecting Rising category
-   S,s     selecting Search category
-EXAMPLES
-    Get the first 10 posts in r/all in the Hot posts category:
-        $ ./scraper.py -s all H 10
-    Search for "United States of America" in r/worldnews:
-        $ ./scraper.py -s worldnews S "United States of America"
-    Like the non-CLI scraper, you can choose to scrape multiple subreddits at a time:
-        $ ./scraper.py -s askreddit C 10 -s dankmemes H 15 -s worldnews S "United States of America"
-    If you want the basic scraper without flags, you can use the -b flag:
-        $ ./scraper.py -b
-""")
-
-    ### Parser scraper and basic flags
-    parser.add_argument("-s","--sub", action="append", nargs=3, metavar="", help="specify subreddit to scrape")
-    parser.add_argument("-b","--basic", action="store_true",help="initialize non-CLI Reddit scraper")
-
-    ### Print help message if no arguments are present
-    if len(sys.argv[1:]) == 0:
-        parser.print_help()
-        parser.exit()
-
-    args = parser.parse_args()
-    return parser,args
-
-### Create sub_list if args.basic is False
-def create_sub_list(parser,args):
-    sub_list = [sub[0] for sub in args.sub]
-    return sub_list
-
-### Check args and catching errors
-def check_args(parser,args):
-    sub_counter = 1
-    for subs in args.sub:
-        len_counter = 0
-        try:
-            if subs[1].isdigit() or len(subs[1]) > 1:
-                raise ValueError
-            for char in short_cat:
-                if str(subs[1]).upper() == char:
-                    if str(subs[1]).upper() != "S" and subs[2].isalpha():
-                        raise ValueError
-                    else:
-                        sub_counter += 1
-                    break
-                elif len_counter == len(short_cat) - 1:
-                    raise ValueError
-                else:
-                    len_counter += 1
-        except ValueError:
-            error = "| ERROR IN FLAG %s |" % sub_counter
-            print()
-            print("-"*len(error))
-            print(error)
-            print("-"*len(error))
-            print()
-            parser.print_help()
-            parser.exit()
-            break
-
-### Check if the subreddits exist and list invalid subreddits if applicable
-def confirm_subs(reddit,sub_list,parser):
-    print("\nChecking if subreddit(s) exist...")
-    found,not_found = existence(reddit,sub_list,parser)
-    if not_found:
-        print("\nThe following subreddits were not found and will be skipped:")
-        print("-"*60)
-        # print(*not_found, sep = "\n")
-
-    subs = [sub for sub in found]
-    return subs
-
-### Get CLI scraping settings
-def get_cli_settings(args,master):
-    for sub_n,values in master.items():
-        for sub in args.sub:
-            settings = [sub[1],sub[2]]
-            if sub_n == sub[0]:
-                master[sub_n].append(settings)
-#-------------------------------------------------------------------------------
-
-### Select subreddit(s) to scrape
-def get_subreddits(reddit,parser):
-    while True:
-        try:
-            search_for = str(input("""
-Enter subreddit or a list of subreddits (separated by a space) to scrape:
-"""))
-            if not search_for:
-                raise ValueError
-
-            print("\nChecking if subreddit(s) exist...")
-            search_for = " ".join(search_for.split())
-            sub_list = [subreddit for subreddit in search_for.split(" ")]
-            found,not_found = existence(reddit,sub_list,parser)
-            if found:
-                print("\nThe following subreddits were found and will be scraped:")
-                print("-"*56)
-                # print(*found, sep = "\n")
-            if not_found:
-                print("\nThe following subreddits were not found and will be skipped:")
-                print("-"*60)
-                # print(*not_found, sep = "\n")
-
-            while True:
-                try:
-                    confirm = input("\nConfirm selection? [Y/N] ").strip().lower()
-                    if confirm == "y":
-                        subs = [sub for sub in found]
-                        return subs
-                    elif confirm == "n":
-                        break
-                    elif confirm not in options:
-                        raise ValueError
-                except ValueError:
-                    print("Not an option! Try again.")
-        except ValueError:
-            print("No subreddits were specified! Try again.")
-        except:
-            pass
-
-### Make master dictionary from subreddit list
-def create_dict(subs):
-    master = dict((sub,[]) for sub in subs)
-    return master
-
-### Select post category and the number of results returned from each subreddit to be scraped
-def get_settings(subs,master):
-    for sub in subs:
-        while True:
-            try:
-                cat_i = int(input(("""
-  Select a category to display for r/%s
-  -------------------
-    0: Hot
-    1: New
-    2: Controversial
-    3: Top
-    4: Rising
-    5: Search
-  -------------------
-           """) % sub))
-
-                if cat_i == 5:
-                    print("\nSelected search option")
-                    while True:
-                        try:
-                            search_for = str(input("\nWhat would you like to search for in r/%s? " % sub)).strip()
-                            if not search_for:
-                                raise ValueError
-                            else:
-                                for sub_n,values in master.items():
-                                    if sub_n == sub:
-                                        settings = [cat_i,search_for]
-                                        master[sub].append(settings)
-                                break
-                        except ValueError:
-                            print("Not an option! Try again.")
-                else:
-                    print("\nSelected post category: %s" % categories[cat_i])
-                    while True:
-                        try:
-                            submissions = input("\nHow many results do you want to capture from r/%s? " % sub).strip()
-                            if submissions.isalpha() or not submissions:
-                                raise ValueError
-                            else:
-                                for sub_n,values in master.items():
-                                    if sub_n == sub:
-                                        settings = [cat_i,int(submissions)]
-                                        master[sub].append(settings)
-                                break
-                        except ValueError:
-                            print("Not an option! Try again.")
-                break
-            except IndexError:
-                print("Not an option! Try again.")
-            except ValueError:
-                print("Not an option! Try again.")
-
-### Print scraping details for each subreddit
-def print_settings(master,args):
-    print("\n------------------Current settings for each subreddit-------------------")
-    print("\n{:<25}{:<17}{:<30}".format("Subreddit","Category","Number of results / Keyword(s)"))
-    print("-"*72)
-    for sub,settings in master.items():
-        for each in settings:
-            if args.basic == False:
-                cat_i = short_cat.index(each[0].upper())
-                specific = each[1]
-            else:
-                cat_i = each[0]
-                specific = each[1]
-            print("\n{:<25}{:<17}{:<30}".format(sub,categories[cat_i],specific))
-
-    while True:
-        try:
-            confirm = input("\nConfirm options? [Y/N] ").strip().lower()
-            if confirm == "y":
-                return confirm
-            elif confirm == "n":
-                break
-            elif confirm not in options:
-                raise ValueError
-        except ValueError:
-            print("Not an option! Try again.")
-
-### Get posts of subreddit. Return the dictionary "collected" when done
-def get_posts(reddit,sub,cat_i,search_for,args):
-    print("\nGetting posts for r/%s..." % sub)
-    subreddit = reddit.subreddit(sub)
-
-    if args.basic == False:
-        if cat_i == short_cat[0]:
-            collected = subreddit.hot(limit = int(search_for))
-        elif cat_i == short_cat[1]:
-            collected = subreddit.new(limit = int(search_for))
-        elif cat_i == short_cat[2]:
-            collected = subreddit.controversial(limit = int(search_for))
-        elif cat_i == short_cat[3]:
-            collected = subreddit.top(limit = int(search_for))
-        elif cat_i == short_cat[4]:
-            collected = subreddit.rising(limit = int(search_for))
-        elif cat_i == short_cat[5]:
-            collected = subreddit.search("%s" % search_for)
-    else:
-        if cat_i == 0:
-            collected = subreddit.hot(limit = search_for)
-        elif cat_i == 1:
-            collected = subreddit.new(limit = search_for)
-        elif cat_i == 2:
-            collected = subreddit.controversial(limit = search_for)
-        elif cat_i == 3:
-            collected = subreddit.top(limit = search_for)
-        elif cat_i == 4:
-            collected = subreddit.rising(limit = search_for)
-        elif cat_i == 5:
-            collected = subreddit.search("%s" % search_for)
-
-    return collected
-
-### Sort collected dictionary
-def sort_posts(collected):
-    print("Sorting posts...")
-    overview = {"Title" : [], \
-                "Score" : [], \
-                "ID" : [], \
-                "URL" : [], \
-                "Comment Count" : [], \
-                "Created" : [], \
-                "Text" : []}
-
-    for post in collected:
-        overview["Title"].append(post.title)
-        overview["Score"].append(post.score)
-        overview["ID"].append(post.id)
-        overview["URL"].append(post.url)
-        overview["Comment Count"].append(post.num_comments)
-        overview["Created"].append(dt.datetime.fromtimestamp(post.created).strftime("%m-%d-%Y %H:%M:%S"))    # Convert UNIX time to readable format
-        overview["Text"].append(post.selftext)
-
-    return overview
-
-### Write overview dictionary to CSV
-def write_csv(sub,cat_i,search_for,overview,args):
-    fname = ""
-    if args.basic == False:
-        if cat_i == short_cat[5]:
-            fname = str(("%s-%s-'%s' %s.csv") % (sub,categories[5],search_for,date))
-        else:
-            fname = str(("%s-%s %s.csv") % (sub,categories[short_cat.index(cat_i)],date))
-    else:
-        if cat_i == 5:
-            fname = str(("%s-%s-'%s' %s.csv") % (sub,categories[cat_i],search_for,date))
-        else:
-            fname = str(("%s-%s %s.csv") % (sub,categories[cat_i],date))
-
-    with open(fname, "w", encoding = "utf-8") as results:
-        writer = csv.writer(results, delimiter = ",")
-        writer.writerow(overview.keys())
-        writer.writerows(zip(*overview.values()))
-
-    print("CSV file for r/%s created." % sub)
-
-### Get, sort, then write posts to CSV
-def get_sort_write(reddit,args,master):
-    for sub,settings in master.items():
-        for each in settings:
-            if args.basic == False:
-                cat_i = each[0].upper()
-            else:
-                cat_i = each[0]
-            search_for = each[1]
-
-            collected = get_posts(reddit,sub,cat_i,search_for,args)
-            overview = sort_posts(collected)
-            write_csv(sub,cat_i,search_for,overview,args)
-
-def another():
-    while True:
-        try:
-            repeat = input("\nScrape again? [Y/N] ").strip().lower()
-            if repeat not in options:
-                raise ValueError
-            else:
-                return repeat
-        except ValueError:
-            print("Not an option! Try again.")
-
 def main():
     ### Reddit Login
     reddit = praw.Reddit(client_id = c_id, \
@@ -385,42 +32,344 @@ def main():
                          user_agent = u_a, \
                          username = usrnm, \
                          password = passwd)
+    saved = reddit.user.me().saved(limit=None)
 
-    ### Parse args and initialize basic or CLI scraper
-    parser,args = parse_args()
-    title()
-    if args.basic == False:
-        ### CLI scraper
-        sub_list = create_sub_list(parser,args)
-        check_args(parser,args)
-        subs = confirm_subs(reddit,sub_list,parser)
+    #variables: count, lists
+    """
+    MAIN DATA STRUCTURE(S):
+    dict = {
+        links_dict:
+            {
+                # keys are Subreddit, values are multi-dimensional lists [0] title [1] url
+                Jazz : ["jazz_link_1", "jazz_link_2"], <- link_arr
+                AskReddit : ["askreddit_link_1", "askreddit_link_2"] 
 
-        master = create_dict(subs)
-        get_cli_settings(args,master)
-        confirm = print_settings(master,args)
-        if confirm == "y":
-            get_sort_write(reddit,args,master)
+            },
+        comments_dict:
+            {
+                # keys are Subreddit, values are multi-dimensional lists [0] title [1] body
+                Jazz : ["jazz_comment_1", "jazz_comment_2","jazz_comment_3],
+                AskReddit : ["askreddit_comment_1", "askreddit_comment_2"]
+            }
+        
+    }
+    """
+
+    saved_item_cnt = 0
+    saved_dict = OrderedDict()
+    saved_dict["links_dict"] = OrderedDict()
+    saved_dict["comments_dict"] = OrderedDict()
+    # it_arr = []
+
+    try:
+        for item in saved:
+            saved_item_cnt = saved_item_cnt + 1 # increment ctr
+
+            if isinstance(item, Submission):
+                # It's a link, do link stuff
+                try:
+                    dict_sub_list = saved_dict["links_dict"][item.subreddit.display_name]
+                    dict_title_list = dict_sub_list[0]
+                    dict_url_list = dict_sub_list[1]
+                    dict_permalink_list = dict_sub_list[2]
+                except KeyError as error:
+                    # print("first time!")
+                    saved_dict["links_dict"][item.subreddit.display_name] = [None] * 3
+                    dict_sub_list = saved_dict["links_dict"][item.subreddit.display_name]
+                    dict_sub_list[0] = []
+                    dict_sub_list[1] = []
+                    dict_sub_list[2] = []
+                    dict_title_list = dict_sub_list[0]
+                    dict_url_list = dict_sub_list[1]
+                    dict_permalink_list = dict_sub_list[2]
+                dict_title_list.append(item.title)
+                dict_url_list.append(item.url)
+                dict_permalink_list.append(item.permalink)
+                # print(item.title)
+                # print(item.url)
+                # print(item.subreddit.display_name)
+                #pass
+            else:
+                # It's a comment, do comment stuff
+                # print(item.body)
+                try:
+                    dict_sub_list = saved_dict["comments_dict"][item.subreddit.display_name]
+                    dict_title_list = dict_sub_list[0]
+                    dict_body_list = dict_sub_list[1]
+                    dict_permalink_list = dict_sub_list[2]
+                except KeyError as error:
+                    saved_dict["comments_dict"][item.subreddit.display_name] = [None] * 3
+                    dict_sub_list = saved_dict["comments_dict"][item.subreddit.display_name]
+                    dict_sub_list[0] = []
+                    dict_sub_list[1] = []
+                    dict_sub_list[2] = []
+                    dict_title_list = dict_sub_list[0]
+                    dict_body_list = dict_sub_list[1]
+                    dict_permalink_list = dict_sub_list[2]
+                dict_title_list.append(item.submission.title)
+                dict_body_list.append(item.body)
+                dict_permalink_list.append(item.permalink)
+                # pass
+    except Forbidden as error:
+        print("\nERROR: %s" % error)
+        print("Please recheck Reddit credentials.")
+    return saved_dict
+
+# saves dictionary state to file
+def save_dict(dict_to_save):
+    cwd = os.getcwd()
+    filename = "dict_json.json"
+    json_file = open(cwd + '/' + filename, 'w+')
+    json.dump(dict_to_save, json_file)
+
+# print function that has forknowledge of saved_dict's internal structure
+def dict_print(dict_to_print):
+
+    # main printing logic
+    #1. Links
+
+    links_dict = dict_to_print["links_dict"]
+    comments_dict = dict_to_print["comments_dict"]
+    loop_print(links_dict, "links")
+    loop_print(comments_dict, "comments")
+
+
+def loop_print(sub_dict, print_type):
+    for subReddit, content_arr in sub_dict.items():
+        # every subreddit should get its own page
+        cwd = os.getcwd()
+        filename = subReddit + '_' + print_type + '.md'
+
+        if not os.path.exists('saved_' + print_type):
+            os.makedirs('saved_' + print_type)
+        file_p = open(cwd + '/saved_' + print_type + '/' + filename, 'w+')
+        
+        if print_type == "links":
+            links_filename_list.append(filename)
         else:
-            print("\nExiting.")
-    else:
-        ### Basic scraper
-        print("\nSelected basic scraper")
-        while True:
-            while True:
-                subs = get_subreddits(reddit,parser)
-                master = create_dict(subs)
-                get_settings(subs,master)
-                confirm = print_settings(master,args)
-                if confirm == "y":
-                    break
-                else:
-                    print("\nExiting.")
-                    parser.exit()
-            get_sort_write(reddit,args,master)
-            repeat = another()
-            if repeat == "n":
-                print("\nExiting.")
-                break
+            comments_filename_list.append(filename)
 
-if __name__ == "__main__":
-    main()
+        print("# [" + '/r/' + subReddit + '](https://reddit.com/r/' + subReddit + ')', file=file_p) # subreddit gets primary header in markdown
+        for i in range(len(content_arr[0])):
+            print('## ' + '[' + content_arr[0][i] + '](' + "https://reddit.com" + content_arr[2][i] + ')', file=file_p) # title gets secondary header
+            print(content_arr[1][i], file=file_p)
+
+        file_p.close()  # always close files after opening
+
+def main_print(dict_to_print):
+    print("SAVED REDDIT ITEMS FOR /u/nsl3109\n",file=main_file)
+    print("last generated on " + strftime("%Y-%m-%d %H:%M:%S", gmtime()),file=main_file)
+   
+    print("# " + "LINKS",file=main_file)
+    linked_subs_len = len(dict_to_print["links_dict"].keys())
+    print("Number of SubReddits (saved links): " + str(linked_subs_len),file=main_file)
+
+    idx = 0
+    for subReddit,_ in dict_to_print["links_dict"].items():   
+        print("* " + '[/saved/r/' + subReddit + ']' + '(./saved_links/' + links_filename_list[idx] + ')',file=main_file)
+        idx = idx + 1
+    
+    print("# " + "COMMENTS ",file=main_file)
+    comments_subs_len = len(dict_to_print["comments_dict"].keys())
+    print("Number of SubReddits (saved comments): " + str(comments_subs_len),file=main_file)
+    idx = 0
+    for subReddit,_ in dict_to_print["comments_dict"].items():
+        print("* " + '[/saved/r/' + subReddit + ']' + '(./saved_comments/' + comments_filename_list[idx] + ')',file=main_file)
+        idx = idx + 1
+
+
+## MAIN
+start_time = time.time() # start timer
+print("starting time now..." + str(start_time))
+
+#variables
+links_filename_list = []
+comments_filename_list = []
+
+main_dict = main()
+
+# print stuff
+cwd = os.getcwd()
+main_filename = "saved_reddit_main.md"
+main_file = open(cwd + '/' + main_filename, 'w+')
+
+
+# save_dict(main_dict)
+dict_print(main_dict)
+
+main_print(main_dict)   # have to call main_print after dict_print to populate filename lists
+
+
+main_file.close() # close after writing
+
+stop_time = time.time()
+
+
+# log running stats for future analysis
+stats_filename = "runtime_stats.md"
+stats_file = open(cwd + '/' + stats_filename, 'w+')
+print("--- %s seconds elapsed ---" % (stop_time - start_time))
+print("%s seconds elapsed " % (stop_time - start_time), file=stats_file)
+print("\n | last generated on " + strftime("%Y-%m-%d %H:%M:%S", gmtime() + '\n'),file=stats_file)
+
+stats_file.close()
+
+
+#%%
+#other stuff
+'''
+
+"""
+cwd = os.getcwd()
+filename = "logFile.txt"
+logFile = open(cwd + '/' + filename, 'w+')
+sr_list = ["Jazz", "AskReddit"]
+val_arr_2 = ["blah", "blah2", "blah3"]
+dict = {
+    "Subreddit": sr_list,
+    "val2" : val_arr_2
+}
+"""
+cwd = os.getcwd()
+filename = "logFile.txt"
+logFile = open(cwd + '/' + filename, 'w+')
+pp = pprint.PrettyPrinter(indent=4,stream=logFile,width=1)
+pp.pprint(dict_print)
+
+
+#%%
+"""
+    MAIN DATA STRUCTURE(S):
+    dict = {
+        links_dict:
+            {
+                # keys are Subreddit, values are lists of respective Subreddits with links
+                Jazz : ["jazz_link_1", "jazz_link_2"], <- link_arr
+                AskReddit : ["askreddit_link_1", "askreddit_link_2"] 
+
+            },
+        comments_dict:
+            {
+                # keys are Subreddit, values are lists of respective Subreddits with comments
+                Jazz : ["jazz_comment_1", "jazz_comment_2","jazz_comment_3],
+                AskReddit : ["askreddit_comment_1", "askreddit_comment_2"]
+            }
+        
+    }
+"""
+class Item:
+    def __init__(self, type_lc, subreddit, title, body):
+        self.type_lc = type_lc
+        self.subreddit = subreddit
+        self.title = title
+        self.body = body
+
+it1 = Item("link","Jazz", "Title 1", "lorem ipsum do")
+it2 = Item("comment","Askreddit", "Interesting question 2", "loreeee")
+
+# initializing stuff
+test_dict, links_dict, comments_dict = {}, {}, {}
+test_dict["links_dict"] = {}
+test_dict["comments_dict"] = {}
+it_arr = []
+#main action
+it_arr.append(it1)
+it_arr.append(it2)
+for i in range(0, len(it_arr)):
+    if it_arr[i].type_lc == "link":
+        # try for KeyError to see if key exists
+        try:
+            # check if list already exists
+            dict_sub_list = test_dict["links_dict"][it_arr[i].subreddit]
+        except KeyError:
+            test_dict["links_dict"][it_arr[i].subreddit] = []
+            dict_sub_list = test_dict["links_dict"][it_arr[i].subreddit]
+            # dict_sub_list = []
+        dict_sub_list.append(it_arr[i].body)
+
+    elif it_arr[i].type_lc == "comment":
+        # try for KeyError to see if key exists
+        try:
+            # check if list already exists
+            dict_sub_list = test_dict["comments_dict"][it_arr[i].subreddit]
+        except KeyError:
+            test_dict["comments_dict"][it_arr[i].subreddit] = []
+            dict_sub_list = test_dict["comments_dict"][it_arr[i].subreddit]
+
+        dict_sub_list.append(it_arr[i].body)
+    else:
+        print("else")
+# logging stuff
+# print(it1.subreddit)
+
+# end statement
+# print("reached end2")
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(test_dict)
+
+
+#%% list appending test
+
+list1 = [1]
+ref_list1 = list1
+ref_list1.append(2)
+print(list1)
+#%% garbo test
+test_dict = {}
+print(type(test_dict["blah"]))
+
+#%% misc dict stuff
+default = 'Scruffy'
+dog_owned_by = {'Peter': 'Furry', 'Sally': 'Fluffy'}
+
+dogs = []
+for owner in ('Peter', 'Sally', 'Tim'):
+    dogs.append(dog_owned_by.setdefault(owner, default))
+
+# dogs == ['Furry', 'Fluffy', 'Scruffy']
+# dog_owned_by == {'Tim': 'Scruffy', 'Peter': 'Furry', 'Sally': 'Fluffy'}
+
+#%% multi-dimensional lists
+list1 = [None] * 2
+list1_sub1 = ["title 1", "title2"]
+list1_sub2 = ["body 1", "body2"]
+list1[0] = list1_sub1
+list1[1] = list1_sub2
+
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(list1)
+
+
+
+#%% reviewing how functions work in python
+
+# fn that populates a dict and returns it
+def foo():
+    dict_print = {
+        "links" : "print this",
+        "comments" : "print this comment"
+    }
+    return dict_print
+
+
+
+def dict_print_fn(dict_to_print):
+    import pprint
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(dict_to_print["links"])
+abc = foo()
+dict_print_fn(abc)
+
+#%% trying out OrderedDict
+from collections import OrderedDict
+import pprint
+foo_dict = OrderedDict()
+foo_dict["foo"] = "bar"
+foo_dict["foo2"] = "bar2"
+foo_dict["foo3"] = "bar3"
+
+for foos, bars in foo_dict.items():
+    print(foos, bars)
+'''
