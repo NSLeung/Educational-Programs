@@ -1,0 +1,51 @@
+total 3052888
+-rw-rw-r-- 1 nsleung nsleung      48242 Jan 19 01:26 Job Portfolio Application Northrop Grumman.pdf
+-rw-rw-r-- 1 nsleung nsleung       7624 Jan 17 13:40 SGL schedule template w inst.xlsx
+-rw-rw-r-- 1 nsleung nsleung      44047 Jan 17 13:13 Job Portfolio Application Oracle.pdf
+-rw-rw-r-- 1 nsleung nsleung      43531 Jan 17 13:01 Job Portfolio Application Ocient.pdf
+-rw-rw-r-- 1 nsleung nsleung      43438 Jan 17 12:43 Job Portfolio Application Micron.pdf
+-rw-rw-r-- 1 nsleung nsleung      44750 Jan 17 09:41 Job Portfolio Application Cirrus Logic .pdf
+-rw-rw-r-- 1 nsleung nsleung      43860 Jan 17 09:12 Job Portfolio Application ASML.pdf
+-rw-rw-r-- 1 nsleung nsleung      44454 Jan 17 08:54 Job Portfolio Application AMD.pdf
+-rw------- 1 nsleung nsleung     109609 Jan 15 01:39 UIUC_2019-2020_schedule.pdf
+-rw------- 1 nsleung nsleung     274337 Jan 14 10:53 MCS_App_Proof.pdf
+-rw------- 1 nsleung nsleung      25209 Jan 14 10:52 MCS_Program_app_billing.pdf
+-rw------- 1 nsleung nsleung      70655 Jan 14 10:34 Unofficial_Transcript_1-14-20
+-rw-rw-r-- 1 nsleung nsleung      50876 Jan 14 10:29 MCS Personal Statement.pdf
+drwxrwxr-x 2 nsleung nsleung       4096 Jan  5 07:12 mom_dramas
+-rw-rw-r-- 1 nsleung nsleung     272562 Jan  2 03:04 AMI.pdf
+-rw-rw-r-- 1 nsleung nsleung    2437120 Jan  1 00:37 testbench.tar
+-rw-rw-r-- 1 nsleung nsleung     131584 Dec 29 18:00 samplestatements.doc
+-rw-r--r-- 1 nsleung nsleung    1791148 Dec 27 19:19 ipscan_3.6.2_amd64.deb
+drwxr-xr-x 2 nsleung nsleung       4096 Dec 27 17:18 raspi_image
+-rw-r--r-- 1 nsleung nsleung 2664314355 Dec 27 17:16 2019-09-26-raspbian-buster-full.zip
+-rw-r--r-- 1 nsleung nsleung   94712145 Dec 27 16:45 balena-etcher-electron-1.5.70-linux-x64.zip
+-rw-r--r-- 1 nsleung nsleung     223170 Dec 26 14:14 fafsa_2019.pdf
+-rw-r--r-- 1 nsleung nsleung   13465496 Dec 19 17:48 bfg-1.13.0.jar
+drwxr-xr-x 2 nsleung nsleung       4096 Dec 19 16:56 Textbooks
+-rw-r--r-- 1 nsleung nsleung  104155129 Dec 19 13:31 Textbooks-20191219T183019Z-001.zip
+-rw-r--r-- 1 nsleung nsleung      57983 Dec 18 16:07 Reflection Memo #2.pdf
+-rw-r--r-- 1 nsleung nsleung    4385733 Dec 18 15:15 [BTW250]5020FinalSubmission.pdf
+-rw-r--r-- 1 nsleung nsleung    2252419 Dec 18 15:14 Presentation Slides.pdf
+-rw-r--r-- 1 nsleung nsleung    1827747 Dec 18 15:09 [BTW250]Infographic.pdf
+-rw-r--r-- 1 nsleung nsleung      44923 Dec 18 14:11 5020 Cover Letter.pdf
+-rw-r--r-- 1 nsleung nsleung      79441 Dec 18 14:10 5020 Final Project.pdf
+-rw-r--r-- 1 nsleung nsleung      58102 Dec 18 14:10 5020 Bibliography _ Source Compilation.pdf
+-rw-r--r-- 1 nsleung nsleung      59281 Dec 18 14:10 5020 Rationale Memo.pdf
+-rw-r--r-- 1 nsleung nsleung      59188 Dec 18 14:09 5020 Project Group Work Agreement template.docx.pdf
+-rw-r--r-- 1 nsleung nsleung     147831 Dec 16 12:59 Resume_NaymanLeung_11-28-19_targeted.pdf
+-rw-r--r-- 1 nsleung nsleung      48768 Dec 16 12:59 Job Portfolio Application Boeing.pdf
+-rw-r--r-- 1 nsleung nsleung     639891 Dec 16 12:35 ECE 437 Final Report.pdf
+-rw-r--r-- 1 nsleung nsleung   30477098 Dec 16 12:07 Accelerometer_1.zip
+-rw-r--r-- 1 nsleung nsleung     239679 Dec 16 11:20 Lab 9 Postlab.pdf
+drwxr-xr-x 8 nsleung nsleung       4096 Dec 15 13:38 Accelerometer_1
+-rw-r--r-- 1 nsleung nsleung     375458 Dec 14 12:22 2019 Hallmarks.pdf
+-rw-r--r-- 1 nsleung nsleung     762967 Dec 13 15:11 Fall 2019 Syllabus BTW 250 .docx
+-rw-r--r-- 1 nsleung nsleung   95169279 Dec 13 07:01 balenaEtcher-1.5.70-x64.AppImage
+-rw-r--r-- 1 nsleung nsleung    1415070 Dec  8 14:00 CSE369-Au16-04-JH-SL.pdf
+-rw-r--r-- 1 nsleung nsleung    2735991 Dec  6 17:30 L13 Pipelining.pptx
+-rw-r--r-- 1 nsleung nsleung     343941 Dec  6 17:20 Shuai Chang.pptx
+-rw-r--r-- 1 nsleung nsleung      12378 Nov 30 13:36 [BTW 250]Job_Application_Portfolio.docx
+-rw-r--r-- 1 nsleung nsleung    5845052 Nov 29 20:25 Computer Architechture.pdf
+-rw-r--r-- 1 nsleung nsleung   96656745 Nov 28 22:57 FastX-2.0.110.rhel6.x86_64.tar.gz
+drwxr-xr-x 8 nsleung nsleung       4096 Oct  4  2017 FastX
