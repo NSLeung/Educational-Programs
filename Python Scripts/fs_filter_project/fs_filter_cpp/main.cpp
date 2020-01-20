@@ -39,7 +39,7 @@ int main(){
     if(Ubuntu_dls.is_open()){
          //execute ls, sorts new (top) to old (bottom)
         system("ls ~/Downloads -lt > ls_Ubuntu_dls.txt");
-        system(raspi_system_param.c_str());
+        // system(raspi_system_ls_param.c_str());
         // cout << myfile.rdbuf() << endl;
 
 
