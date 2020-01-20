@@ -1,114 +1,51 @@
-total 4995380
--rw-rw-r--  1 nsleung nsleung    1791148 Jan 19 22:22 ipscan_3.6.2_amd64.deb
--rw-rw-r--  1 nsleung nsleung     149595 Dec 17 14:35 [BTW_250]Correspondence_Portfolio.pdf
--rw-rw-r--  1 nsleung nsleung     475208 Dec 17 11:14 SGCI Report.pdf
--rw-rw-r--  1 nsleung nsleung     920809 Dec 17 11:13 JSSSE poster.pdf
--rw-rw-r--  1 nsleung nsleung     147831 Dec 17 11:10 Resume_NaymanLeung_11-28-19_targeted.pdf
--rw-rw-r--  1 nsleung nsleung      48768 Dec 17 11:10 Job Portfolio Application Boeing.pdf
--rw-rw-r--  1 nsleung nsleung   21680046 Dec 16 14:56 ECE411_Kat.zip
--rw-rw-r--  1 nsleung nsleung   72598706 Dec 16 05:42 Final Project Imager - Corrected.zip
--rw-rw-r--  1 nsleung nsleung    8544413 Dec 16 05:12 Accelerometer_2.zip
-drwxr-xr-x  8 nsleung nsleung       4096 Dec 16 03:48 Accelerometer_2
-drwxr-xr-x  3 nsleung nsleung       4096 Dec 16 02:34 Final Project Imager - Corrected
-drwxr-xr-x 10 nsleung nsleung       4096 Dec 15 20:20 Final Project Imager - Copy
--rw-rw-r--  1 nsleung nsleung     622454 Dec 13 22:46 ECE411 Report.pdf
--rw-rw-r--  1 nsleung nsleung     139700 Dec 13 16:37 [ECE411]MP3CP3_paper_design.png
--rw-rw-r--  1 nsleung nsleung     114249 Dec 13 15:41 [ECE411]MP3CP2_paper_design.png
--rw-rw-r--  1 nsleung nsleung  638209333 Dec 12 01:57 PARIV Christmas 2019.mp4
--rw-rw-r--  1 nsleung nsleung      81624 Dec 11 19:37 [Thea101]Final_Project.pdf
--rw-rw-r--  1 nsleung nsleung  280735778 Dec 11 19:26 [THEA101]final.mp4
--rw-rw-r--  1 nsleung nsleung    1563971 Dec  9 23:08 ece120-notes-SP17.pdf
--rw-rw-r--  1 nsleung nsleung      49822 Dec  9 00:01 [BTW 250]Reflection Memo #1.pdf
--rw-rw-r--  1 nsleung nsleung      58627 Dec  8 22:40 [BTW250] Audience Analysis Memo.pdf
--rw-rw-r--  1 nsleung nsleung    2163010 Nov 21 17:02 main.pdf
--rw-rw-r--  1 nsleung nsleung   56538054 Nov 21 12:22 code_1.40.1-1573664190_amd64.deb
--rw-rw-r--  1 nsleung nsleung   13773305 Nov 20 15:27 ngrok-stable-linux-amd64.zip
-drwxr-xr-x  3 nsleung nsleung       4096 Nov 13 02:10 FastXInstall
--rw-rw-r--  1 nsleung nsleung   96656745 Nov 13 02:09 FastX-2.0.110.rhel6.x86_64.tar.gz
--rw-rw-r--  1 nsleung nsleung      63560 Nov 13 02:03 Lab 11 Prelab.pdf
--rw-rw-r--  1 nsleung nsleung      25099 Nov 13 01:58 xem7310_v1.xdc
--rwxr-xr-x  1 nsleung nsleung   26683198 Oct  8 14:55 ngrok
-drwxr-xr-x  2 nsleung nsleung       4096 Aug 30 10:46 ECE411_Kat
--rw-rw-r--  1 nsleung nsleung    1282344 May  7  2019 final.docx
--rw-rw-r--  1 nsleung nsleung   26439664 May  2  2019 rai (1)
--rw-rw-r--  1 nsleung nsleung     437773 May  2  2019 Report.pdf
--rw-rw-r--  1 nsleung nsleung      90578 May  2  2019 Lease.pdf
--rw-rw-r--  1 nsleung nsleung    1968003 May  1  2019 3rd-Edition-Chapter18-Cluster-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung     664265 Apr 30  2019 ECE408_Exam_2_Spring_2018_answer.docx (3).pdf
--rw-rw-r--  1 nsleung nsleung     515186 Apr 29  2019 ece408-Lecture15-reduction tree Spring 2019 (1).pdf
--rw-rw-r--  1 nsleung nsleung     649489 Apr 29  2019 ece408-lecture22-sparse-matrix-part2-Fall-2019.pdf
--rw-rw-r--  1 nsleung nsleung     787057 Apr 29  2019 ECE408_Exam_2_Fall_2017_answer.pdf
--rw-rw-r--  1 nsleung nsleung     352100 Apr 29  2019 ECE408_Study_Questions_2_Fall_2016_answer.pdf
--rw-rw-r--  1 nsleung nsleung    1479325 Apr 28  2019 3rd-Edition-Chapter09-histogram-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung     438293 Apr 28  2019 ece408-lecture27-OpenACC-Spring-2019 (1).pdf
--rw-rw-r--  1 nsleung nsleung     438293 Apr 27  2019 ece408-lecture27-OpenACC-Spring-2019.pdf
--rw-rw-r--  1 nsleung nsleung     630050 Apr 27  2019 ece408-lecture18-histogram-spring-2019 (1).pdf
--rw-rw-r--  1 nsleung nsleung     985046 Apr 25  2019 ece408-lecture27-MPI-spring-2018.pptx
--rw-rw-r--  1 nsleung nsleung     144419 Apr 25  2019 ece408-lecture26-OpenACC-spring-2018.pptx
--rw-rw-r--  1 nsleung nsleung     658572 Apr 25  2019 ece408-lecture24-GPU-in-PC-Architecture-spring-2019.pdf
--rw-rw-r--  1 nsleung nsleung     534602 Apr 25  2019 ece408-lecture23-GPU-Data-Transfer-Spring-2019.pdf
--rw-rw-r--  1 nsleung nsleung     214720 Apr 23  2019 ECE408_Exam_#2_Study_Guide_2018-v1.pdf
--rw-rw-r--  1 nsleung nsleung  266591744 Apr 18  2019 userdata_build-5cb8e64c91219d40f24d317a.tar.gz
-drwxr-xr-x  6 nsleung nsleung       4096 Apr 18  2019 build
--rw-rw-r--  1 nsleung nsleung  266591744 Apr 18  2019 build-5cb8e26e91219d387268fc5e.tar.gz
--rw-rw-r--  1 nsleung nsleung   23951360 Apr 18  2019 linux-amd64 (1).tar.gz
--rw-rw-r--  1 nsleung nsleung    7440261 Apr 18  2019 rai-linux.tar.gz
--rw-rw-r--  1 nsleung nsleung    1250678 Apr 18  2019 3rd-Edition-Chapter07-convolution-FINAL-corrected (3).pdf
--rw-rw-r--  1 nsleung nsleung    1478047 Apr 18  2019 3rd-Edition-Chapter05-performance-FINAL-corrected (1).pdf
--rw-rw-r--  1 nsleung nsleung    1857619 Apr 18  2019 3rd-Edition-Chapter04-memory-model-FINAL-corrected (3).pdf
--rw-rw-r--  1 nsleung nsleung    1460709 Apr 18  2019 3rd-Edition-Chapter16-case-study-DNN-FINAL-corrected (2).pdf
--rw-rw-r--  1 nsleung nsleung     919232 Apr 18  2019 3rd-Edition-Chapter10-sparse-FINAL-corrected (1).pdf
--rw-rw-r--  1 nsleung nsleung    1857619 Apr 18  2019 3rd-Edition-Chapter04-memory-model-FINAL-corrected (2).pdf
--rwxr-xr-x  1 nsleung nsleung   23448840 Apr 15  2019 rai-linux
--rw-rw-r--  1 nsleung nsleung     255178 Apr 10  2019 offerletter.pdf
--rw-rw-r--  1 nsleung nsleung     919232 Apr 10  2019 3rd-Edition-Chapter10-sparse-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung     805524 Apr  9  2019 ece408-lecture21-sparse-matrix-spring-2019.pdf
--rw-rw-r--  1 nsleung nsleung      32503 Apr  9  2019 Rockwell Collins Employee Tax Information Sheet 2019.docx
--rw-rw-r--  1 nsleung nsleung    1626073 Apr  5  2019 3rd-Edition-Chapter08-scan-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung     630050 Apr  5  2019 ece408-lecture18-histogram-spring-2019.pdf
--rw-rw-r--  1 nsleung nsleung       4276 Apr  4  2019 new-forward-shreyas.cuh
--rw-rw-r--  1 nsleung nsleung    1460709 Apr  4  2019 3rd-Edition-Chapter16-case-study-DNN-FINAL-corrected (1).pdf
--rw-rw-r--  1 nsleung nsleung     559864 Apr  4  2019 ece408-lecture2-CUDA-introduction-spring-2019 (1).pdf
--rw-rw-r--  1 nsleung nsleung    1473522 Mar 14  2019 3rd-Edition-Chapter05-performance-FINAL.pdf
--rw-rw-r--  1 nsleung nsleung     515186 Mar 14  2019 ece408-Lecture15-reduction tree Spring 2019.pdf
--rw-rw-r--  1 nsleung nsleung    1213900 Mar 12  2019 HKNECE342ReviewSession2SP19.pptx
--rw-rw-r--  1 nsleung nsleung      39925 Mar 10  2019 5AmT3edRjRxnDR2ZVW3QJZ.html
--rw-rw-r--  1 nsleung nsleung      89060 Mar 10  2019 Report Checkpoint 1.pdf
--rw-rw-r--  1 nsleung nsleung    1747872 Mar 10  2019 libaccinj64-9.1_9.1.85-4ubuntu1_amd64.deb
--rw-rw-r--  1 nsleung nsleung 1639693656 Mar 10  2019 cuda-repo-ubuntu1804-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
--rw-rw-r--  1 nsleung nsleung   19164580 Mar 10  2019 anyconnect-linux64-4.6.00362-predeploy-k9.tar.gz
--rw-rw-r--  1 nsleung nsleung   24668160 Mar 10  2019 linux-amd64.tar.gz
--rw-rw-r--  1 nsleung nsleung     145853 Mar 10  2019 2019sp-kickoff-slides-final.pdf
--rw-rw-r--  1 nsleung nsleung      25091 Feb 27  2019 UIUC_awardLetter_18-19.pdf
--rw-rw-r--  1 nsleung nsleung     371433 Feb 26  2019 ECE 408 Exam 1 Spring-2018-Answer-v2.docx.pdf
--rw-rw-r--  1 nsleung nsleung     341291 Feb 25  2019 ECE408_FA18_Exam1_v2_rubric_updated.pdf
--rw-rw-r--  1 nsleung nsleung    2032396 Feb 25  2019 3rd-Edition-Chapter02-data-parallel-programming-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung    2094589 Feb 25  2019 3rd-Edition-Chapter03-data-parallel-execution-FINAL-corrected (1).pdf
--rw-rw-r--  1 nsleung nsleung    1478047 Feb 25  2019 3rd-Edition-Chapter05-performance-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung    1857619 Feb 25  2019 3rd-Edition-Chapter04-memory-model-FINAL-corrected (1).pdf
--rw-rw-r--  1 nsleung nsleung    1250678 Feb 25  2019 3rd-Edition-Chapter07-convolution-FINAL-corrected (2).pdf
--rw-rw-r--  1 nsleung nsleung    1250678 Feb 25  2019 3rd-Edition-Chapter07-convolution-FINAL-corrected (1).pdf
--rw-rw-r--  1 nsleung nsleung     347428 Feb 25  2019 ECE408_Exam_1_Fall_2016.pdf
-drwxr-xr-x  6 nsleung nsleung       4096 Feb 24  2019 ece391
--rw-rw-r--  1 nsleung nsleung      76339 Feb 24  2019 bmoran5_ECE391_MP2.zip
--rwxr-xr-x  1 nsleung nsleung   24660264 Feb 24  2019 rai
--rw-r--r--  1 nsleung nsleung       1736 Feb 24  2019 LICENSE.TXT
--rw-r--r--  1 nsleung nsleung          6 Feb 24  2019 VERSION
--rw-rw-r--  1 nsleung nsleung     830024 Feb 23  2019 ECE408_Exam_#1_Study_Guide_2017 v4.pdf
--rw-rw-r--  1 nsleung nsleung     107132 Feb 21  2019 ece408-lecture-8-tiled-convolution-2018.pptx
--rw-rw-r--  1 nsleung nsleung    1460709 Feb 20  2019 3rd-Edition-Chapter16-case-study-DNN-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung     139446 Feb 19  2019 Embedded_Interview_Q_1.pdf
--rw-rw-r--  1 nsleung nsleung         95 Feb 19  2019 README.glibc
--rw-rw-r--  1 nsleung nsleung    5609374 Feb 17  2019 UnderstandingTheLinuxKernel.pdf
--rw-rw-r--  1 nsleung nsleung    1250678 Feb 15  2019 3rd-Edition-Chapter07-convolution-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung    2094589 Feb  4  2019 3rd-Edition-Chapter03-data-parallel-execution-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung    1857619 Feb  2  2019 3rd-Edition-Chapter04-memory-model-FINAL-corrected.pdf
--rw-rw-r--  1 nsleung nsleung     469582 Feb  1  2019 ece408-lecture6-dram-spring-2018.pptx
--rw-rw-r--  1 nsleung nsleung     530272 Feb  1  2019 ece408-lecture6-dram-tiling-fall-2018.pptx
--rw-rw-r--  1 nsleung nsleung     158903 Jan 30  2019 Nayman Leung Resume.pdf
--rw-rw-r--  1 nsleung nsleung    1316278 Jan 28  2019 ProgrammingGroundUp-1-0-lettersize.pdf
--rw-rw-r--  1 nsleung nsleung   56596720 Jan 28  2019 slack-desktop-3.3.7-amd64.deb
--rw-rw-r--  1 nsleung nsleung     559864 Jan 21  2019 ece408-lecture2-CUDA-introduction-spring-2019.pdf
--rw-rw-r--  1 nsleung nsleung       7616 Jan 17  2019 setup_linux.sh
--rw-rw-r--  1 nsleung nsleung 1451479132 Jan 17  2019 ece391.tar.gz
-drwxr-xr-x  6 nsleung nsleung       4096 Mar 17  2018 anyconnect-linux64-4.6.00362
+total 3052888
+-rw-rw-r-- 1 nsleung nsleung      48242 Jan 19 01:26 Job Portfolio Application Northrop Grumman.pdf
+-rw-rw-r-- 1 nsleung nsleung       7624 Jan 17 13:40 SGL schedule template w inst.xlsx
+-rw-rw-r-- 1 nsleung nsleung      44047 Jan 17 13:13 Job Portfolio Application Oracle.pdf
+-rw-rw-r-- 1 nsleung nsleung      43531 Jan 17 13:01 Job Portfolio Application Ocient.pdf
+-rw-rw-r-- 1 nsleung nsleung      43438 Jan 17 12:43 Job Portfolio Application Micron.pdf
+-rw-rw-r-- 1 nsleung nsleung      44750 Jan 17 09:41 Job Portfolio Application Cirrus Logic .pdf
+-rw-rw-r-- 1 nsleung nsleung      43860 Jan 17 09:12 Job Portfolio Application ASML.pdf
+-rw-rw-r-- 1 nsleung nsleung      44454 Jan 17 08:54 Job Portfolio Application AMD.pdf
+-rw------- 1 nsleung nsleung     109609 Jan 15 01:39 UIUC_2019-2020_schedule.pdf
+-rw------- 1 nsleung nsleung     274337 Jan 14 10:53 MCS_App_Proof.pdf
+-rw------- 1 nsleung nsleung      25209 Jan 14 10:52 MCS_Program_app_billing.pdf
+-rw------- 1 nsleung nsleung      70655 Jan 14 10:34 Unofficial_Transcript_1-14-20
+-rw-rw-r-- 1 nsleung nsleung      50876 Jan 14 10:29 MCS Personal Statement.pdf
+drwxrwxr-x 2 nsleung nsleung       4096 Jan  5 07:12 mom_dramas
+-rw-rw-r-- 1 nsleung nsleung     272562 Jan  2 03:04 AMI.pdf
+-rw-rw-r-- 1 nsleung nsleung    2437120 Jan  1 00:37 testbench.tar
+-rw-rw-r-- 1 nsleung nsleung     131584 Dec 29 18:00 samplestatements.doc
+-rw-r--r-- 1 nsleung nsleung    1791148 Dec 27 19:19 ipscan_3.6.2_amd64.deb
+drwxr-xr-x 2 nsleung nsleung       4096 Dec 27 17:18 raspi_image
+-rw-r--r-- 1 nsleung nsleung 2664314355 Dec 27 17:16 2019-09-26-raspbian-buster-full.zip
+-rw-r--r-- 1 nsleung nsleung   94712145 Dec 27 16:45 balena-etcher-electron-1.5.70-linux-x64.zip
+-rw-r--r-- 1 nsleung nsleung     223170 Dec 26 14:14 fafsa_2019.pdf
+-rw-r--r-- 1 nsleung nsleung   13465496 Dec 19 17:48 bfg-1.13.0.jar
+drwxr-xr-x 2 nsleung nsleung       4096 Dec 19 16:56 Textbooks
+-rw-r--r-- 1 nsleung nsleung  104155129 Dec 19 13:31 Textbooks-20191219T183019Z-001.zip
+-rw-r--r-- 1 nsleung nsleung      57983 Dec 18 16:07 Reflection Memo #2.pdf
+-rw-r--r-- 1 nsleung nsleung    4385733 Dec 18 15:15 [BTW250]5020FinalSubmission.pdf
+-rw-r--r-- 1 nsleung nsleung    2252419 Dec 18 15:14 Presentation Slides.pdf
+-rw-r--r-- 1 nsleung nsleung    1827747 Dec 18 15:09 [BTW250]Infographic.pdf
+-rw-r--r-- 1 nsleung nsleung      44923 Dec 18 14:11 5020 Cover Letter.pdf
+-rw-r--r-- 1 nsleung nsleung      79441 Dec 18 14:10 5020 Final Project.pdf
+-rw-r--r-- 1 nsleung nsleung      58102 Dec 18 14:10 5020 Bibliography _ Source Compilation.pdf
+-rw-r--r-- 1 nsleung nsleung      59281 Dec 18 14:10 5020 Rationale Memo.pdf
+-rw-r--r-- 1 nsleung nsleung      59188 Dec 18 14:09 5020 Project Group Work Agreement template.docx.pdf
+-rw-r--r-- 1 nsleung nsleung     147831 Dec 16 12:59 Resume_NaymanLeung_11-28-19_targeted.pdf
+-rw-r--r-- 1 nsleung nsleung      48768 Dec 16 12:59 Job Portfolio Application Boeing.pdf
+-rw-r--r-- 1 nsleung nsleung     639891 Dec 16 12:35 ECE 437 Final Report.pdf
+-rw-r--r-- 1 nsleung nsleung   30477098 Dec 16 12:07 Accelerometer_1.zip
+-rw-r--r-- 1 nsleung nsleung     239679 Dec 16 11:20 Lab 9 Postlab.pdf
+drwxr-xr-x 8 nsleung nsleung       4096 Dec 15 13:38 Accelerometer_1
+-rw-r--r-- 1 nsleung nsleung     375458 Dec 14 12:22 2019 Hallmarks.pdf
+-rw-r--r-- 1 nsleung nsleung     762967 Dec 13 15:11 Fall 2019 Syllabus BTW 250 .docx
+-rw-r--r-- 1 nsleung nsleung   95169279 Dec 13 07:01 balenaEtcher-1.5.70-x64.AppImage
+-rw-r--r-- 1 nsleung nsleung    1415070 Dec  8 14:00 CSE369-Au16-04-JH-SL.pdf
+-rw-r--r-- 1 nsleung nsleung    2735991 Dec  6 17:30 L13 Pipelining.pptx
+-rw-r--r-- 1 nsleung nsleung     343941 Dec  6 17:20 Shuai Chang.pptx
+-rw-r--r-- 1 nsleung nsleung      12378 Nov 30 13:36 [BTW 250]Job_Application_Portfolio.docx
+-rw-r--r-- 1 nsleung nsleung    5845052 Nov 29 20:25 Computer Architechture.pdf
+-rw-r--r-- 1 nsleung nsleung   96656745 Nov 28 22:57 FastX-2.0.110.rhel6.x86_64.tar.gz
+drwxr-xr-x 8 nsleung nsleung       4096 Oct  4  2017 FastX
