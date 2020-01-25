@@ -2,11 +2,15 @@
 
 from __future__ import print_function
 import datetime
+import rfc3339
+import iso8601
 import pickle
 import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+
+import re
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -46,28 +50,68 @@ def main(fp):
 
     start, _ = week_magic()
     start = start.isoformat() + 'Z'
+    # current = datetime.datetime.now().isoformat()
 
-    # now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     # print('Getting the upcoming 10 events')
     print('Getting past events from the beginning of the week')
-    events_result = service.events().list(calendarId='primary', timeMin=start,
+    events_result = service.events().list(calendarId='primary', timeMin=start, timeMax=now,
                                         maxResults=50, singleEvents=True,
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
+    events_dict = {}
 
     if not events:
         print('No upcoming events found.')
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
-        # formatted_start = start.
-        print(start, event['summary'], file=fp)
+        end = event['end'].get('dateTime', event['end'].get('date'))
+
+        # compute length of each event
+        difference = convert_hr_float(get_date_object(end) - get_date_object(start))
+        print("length of event {}: {}".format(event['summary'], difference), file=fp)
+
+        # start filtering events by category
+
+        # use regex
+        p = re.compile("\[\w*\]")
+        result = p.search(event['summary'])
+        
+        if result:
+            category = result.group(0)
+            try:
+                events_dict[category] = events_dict[category] + difference
+            except KeyError:
+                events_dict[category] = 0
+                events_dict[category] = events_dict[category] + difference
+
+        else:
+            try:
+                events_dict["Misc"] = events_dict["Misc"] + difference
+            except KeyError:
+                events_dict["Misc"] = 0
+                events_dict["Misc"] = events_dict["Misc"] + difference
+
+    print(events_dict)
+        
+
+def convert_hr_float(date_object):
+    # print(float(date_object.total_seconds())/ (60 * 60))
+    return float(date_object.total_seconds() / (60 * 60))
+def get_date_object(date_string):
+  return iso8601.parse_date(date_string)
+
+def get_date_string(date_object):
+  return rfc3339.rfc3339(date_object)
 
 def open_file():
     cwd = os.getcwd()
     filename = "events"
     beginning, _ = week_magic()
 
-    file_p = open(cwd + '/' + filename + '_weekof_' + beginning.strftime("%x") + '.txt', 'w+')
+
+    file_p = open(cwd + '/' + filename + '_weekof_' + beginning.strftime("%x").replace('/', '-') + '.txt', 'w+')
+    # file_p = open(cwd + '/' + 'test.txt', 'w+')
     return file_p
 def close_file(fp):
     fp.close()
