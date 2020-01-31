@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from __future__ import print_function
 import datetime
@@ -6,16 +6,19 @@ import rfc3339
 import iso8601
 import pickle
 import os.path
+import sys
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 import re
 
+import plotly.graph_objects as go
+
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
-def main(fp):
+def main(fp, exec_mode):
     """Shows basic usage of the Google Calendar API.
     Prints the start and name of the next 10 events on the user's calendar.
     """
@@ -43,14 +46,15 @@ def main(fp):
     # Call the Calendar API
 
     
-    # today = datetime.datetime.now()
-    # d = datetime.timedelta(days=7)  # want to grab on a weekly basis
-    # a = today - d
-    # start = a.isoformat() + 'Z'
-
-    start, _ = week_magic()
-    start = start.isoformat() + 'Z'
-    # current = datetime.datetime.now().isoformat()
+    if(exec_mode == '7-day'):
+        today = datetime.datetime.now()
+        d = datetime.timedelta(days=7)  # want to grab on a weekly basis
+        a = today - d
+        start = a.isoformat() + 'Z'
+    else: 
+        start, _ = week_magic()
+        start = start.isoformat() + 'Z'
+        current = datetime.datetime.now().isoformat()
 
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     # print('Getting the upcoming 10 events')
@@ -60,6 +64,7 @@ def main(fp):
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
     events_dict = {}
+    cumulative_hours = 0
 
     if not events:
         print('No upcoming events found.')
@@ -71,28 +76,104 @@ def main(fp):
         difference = convert_hr_float(get_date_object(end) - get_date_object(start))
         print("length of event {}: {}".format(event['summary'], difference), file=fp)
 
+        cumulative_hours = cumulative_hours + difference
+
         # start filtering events by category
 
         # use regex
-        p = re.compile("\[\w*\]")
-        result = p.search(event['summary'])
+        p = re.compile("\[.*?\]")
+        result = p.findall(event['summary'])
         
-        if result:
-            category = result.group(0)
+        try:
+            category = result[0]
             try:
-                events_dict[category] = events_dict[category] + difference
-            except KeyError:
-                events_dict[category] = 0
-                events_dict[category] = events_dict[category] + difference
+                hi = result[1]
+                try:
+                    events_dict[result[1] + ' ' + category] = events_dict[result[1] + ' ' + category] + difference
+                except KeyError:
+                    events_dict[result[1] + ' ' + category] = 0
+                    events_dict[result[1] + ' ' + category] = events_dict[result[1] + ' ' + category] + difference
+            except:
+                try:
+                    events_dict[category] = events_dict[category] + difference
+                except KeyError:
+                    events_dict[category] = 0
+                    events_dict[category] = events_dict[category] + difference
 
-        else:
+        except:
             try:
                 events_dict["Misc"] = events_dict["Misc"] + difference
             except KeyError:
                 events_dict["Misc"] = 0
                 events_dict["Misc"] = events_dict["Misc"] + difference
 
+    # retrieve the sleep calendar
+    # jkikqeh1d8ducarnbmbn92iflc@group.calendar.google.com
+
+    print('Getting sleep data')
+
+    # have to recalculate time
+    if(exec_mode == '7-day'):
+        today = datetime.datetime.now()
+        d = datetime.timedelta(days=7)  # want to grab on a weekly basis
+        a = today - d
+        start = a.isoformat() + 'Z'
+    else: 
+        #TODO: calculate time elapsed since beginning of week till now, right now I only calculate 7 days
+        start, _ = week_magic()
+        start = start.isoformat() + 'Z'
+        current = datetime.datetime.now().isoformat()
+
+    events_result = service.events().list(calendarId='jkikqeh1d8ducarnbmbn92iflc@group.calendar.google.com', timeMin=start, timeMax=now,
+                                        maxResults=50, singleEvents=True,
+                                        orderBy='startTime').execute()
+    events = events_result.get('items', [])
+    # events_dict = {}
+
+    if not events:
+        print('No upcoming events found.')
+    for event in events:
+        start = event['start'].get('dateTime', event['start'].get('date'))
+        end = event['end'].get('dateTime', event['end'].get('date'))
+
+        # compute length of each event
+        difference = convert_hr_float(get_date_object(end) - get_date_object(start))
+        print("length of sleep period {}: {}".format(event['summary'], difference), file=fp)
+        cumulative_hours = cumulative_hours + difference
+
+        # if event['summary'] is 'Sleep':
+        try:
+            events_dict["Sleep"] = events_dict["Sleep"] + difference
+        except KeyError:
+            events_dict["Sleep"] = 0
+            events_dict["Sleep"] = events_dict["Sleep"] + difference
+
+    # calculation to account for white space (put in misc)
+    # if exec_mode == '7-day':
+    white_space = (7 * 24) - cumulative_hours
+    try:
+        events_dict["Misc"] = events_dict["Misc"] + white_space
+    except KeyError:
+        events_dict["Misc"] = 0
+        events_dict["Misc"] = events_dict["Misc"] + white_space
+
     print(events_dict)
+
+    display_chart(events_dict)
+
+def display_chart(events_dict):
+    event_name_list = []
+    event_length_list = []
+    for event_name, event_length in events_dict.items():
+        event_name_list.append(event_name)
+        event_length_list.append(event_length)
+
+    fig = go.Figure(data=[go.Pie(labels=event_name_list, values = event_length_list, hole=.4)])
+    fig.update_layout(font=dict(
+        family="Courier New, monospace",
+        size=24
+    ))
+    fig.show()
         
 
 def convert_hr_float(date_object):
@@ -129,8 +210,13 @@ def week_magic():
     return (beginning_of_week, end_of_week)
 
 if __name__ == '__main__':
+    num_args = len(sys.argv)
+    exec_mode = 'default'
+    if num_args > 1:
+        if sys.argv[1] == '7-day':
+            exec_mode = '7-day'
     fp = open_file()
-    main(fp)
+    main(fp, exec_mode)
     close_file(fp)
 
 '''
@@ -138,5 +224,6 @@ NOTES:
 - have several views
 1) productivity only, no white-space
 2) scope of entire day with white-space
+3) combine sections for productivity (ex: classes, homework)
 
 '''

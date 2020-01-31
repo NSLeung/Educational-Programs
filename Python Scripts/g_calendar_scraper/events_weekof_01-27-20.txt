@@ -1,0 +1,52 @@
+length of event Late night with Joe: 1.0
+length of event Appointment with Nayman Leung and John Mahlmeister: 0.5
+length of event [Class] GEOL 107: 1.0
+length of event [Class] GEOL 107 Lab: 2.0
+length of event [IV] IV Bible Prep: 2.0
+length of event [IV] AMT: 1.5
+length of event [Meal] Lunch with Andrew: 1.0
+length of event [Career] Python side-project: 2.25
+length of event [Homework] [CS 374] CS 374 HW 1: 2.5
+length of event [Meal] Dinner with Krishna: 1.5
+length of event [Homework] [CS 374] CS 374 HW 1: 2.0
+length of event [IV] Late Skate: 1.0
+length of event [Church]: 2.0
+length of event [Meal] Lunch: 1.0
+length of event [Recreation] Swimming: 1.5
+length of event [Social] CNY Party: 6.5
+length of event [Social] Murphy's Pub Trivia: 2.0
+length of event [Class] GEOL 107: 1.0
+length of event [Meal] Lunch: 1.0
+length of event [Class] SatDev Software Standup: 0.5
+length of event [Career] Micron Tech Talk: 1.0
+length of event [Church] Devo: 0.25
+length of event [Class] LASSI: 1.0
+length of event [Class] ECE 438: 1.25
+length of event [Class] CS 374: 1.25
+length of event [Meal] Lunch: 1.0
+length of event [Career] ECS Spring Career Fair: 3.0
+length of event [Meal] Dinner: 2.0
+length of event [Homework] [CS 374] PS 1: 1.0
+length of event [Church] Devo: 1.0
+length of event [Homework] [CS 438] MP0: 0.75
+length of event [Class] GEOL 107: 1.0
+length of event [Class] CS 374 OH: 2.75
+length of event [Homework] [CS 438] MP0: 2.75
+length of event [Meal] Dinner with Shreyas: 1.0
+length of event [Homework] [CS 374]: 3.0
+length of event [Class] LASSI: 2.0
+length of event [Class] CS 374: 1.25
+length of event Giving Blood: 1.0
+length of event [Meal] Lunch: 1.0
+length of event [Social] Meetup with Sura: 0.5
+length of event [IV] AMT: 1.5
+length of event [IV] SG prep: 1.5
+length of event [IV] SG: 3.0
+length of event [Meal] Dinner with Joe: 1.0
+length of sleep period Sleep: 8.75
+length of sleep period Sleep: 8.20138888888889
+length of sleep period Sleep: 7.679722222222222
+length of sleep period Sleep: 9.366388888888888
+length of sleep period Sleep: 7.165
+length of sleep period Sleep: 5.79
+length of sleep period Sleep: 6.820277777777778
