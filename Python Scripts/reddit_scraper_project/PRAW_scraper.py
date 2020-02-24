@@ -210,7 +210,7 @@ stats_filename = "runtime_stats.md"
 stats_file = open(cwd + '/' + stats_filename, 'w+')
 print("--- %s seconds elapsed ---" % (stop_time - start_time))
 print("%s seconds elapsed " % (stop_time - start_time), file=stats_file)
-print("\n | last generated on " + strftime("%Y-%m-%d %H:%M:%S", gmtime() + '\n'),file=stats_file)
+print("\n | last generated on " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + '\n',file=stats_file)
 
 stats_file.close()
 
