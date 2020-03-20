@@ -18,4 +18,10 @@ hello2 = () => {
 hello3 = (val) => "Hello " + val;
 
 hello4 = val => "Hello " + val;
-console.log(hello4("Bobby"));
+
+hello5 = val =>{
+    val += " added something";
+    return "Hello " + val;
+}
+console.log(hello5("Bobby"));
+

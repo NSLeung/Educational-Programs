@@ -9,3 +9,5 @@ npm i react-router-dom
 npm i axios
 
 some hacks: https://github.com/facebook/create-react-app/issues/7612
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
