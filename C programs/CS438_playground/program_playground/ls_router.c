@@ -16,13 +16,17 @@ struct fw_table_entry fw_table[256];
 
 int isConnected(int node1, int node2)
 {
-    return ((neighborConnections[node1][node2] == 1) && (neighborConnections[node2][node1] == 1));
+    return ((neighborConnections[node1][node2] > 0) && (neighborConnections[node2][node1] > 0));
 }
 
-void setConnection(int node1, int node2)
+void setConnection(int node1, int node2, int weight)
 {
-    neighborConnections[node1][node2] = 1;
-    neighborConnections[node2][node1] = 1;
+    neighborConnections[node1][node2] = weight;
+    neighborConnections[node2][node1] = weight;
+}
+int getLinkCost(int node1, int node2)
+{
+    return neighborConnections[node1][node2];
 }
 Node* getNeighbors(int node){
     Node* head = NULL;
@@ -57,6 +61,17 @@ SP_Node* get_min(SP_Node* head)
     }
     return NULL;
 }
+void printSummary(SP_Node* confirmed, SP_Node* tentative, int level, int d, int c, int n)
+{
+    printf("---------------------------------------\n");
+    printf("LEVEL %d\n", level);
+    printf("Inspecting next: <%d, %d, %d>\n", d, c, n);
+    printf("CONFIRMED::\n");
+    printList(confirmed);
+    printf("TENTATIVE::\n");
+    printList(tentative);
+    printf("---------------------------------------\n");
+}
 
 void dijkstra(int srcnode)
 {
@@ -81,7 +96,7 @@ void dijkstra(int srcnode)
             next_node = get_min(tentative);
             next_node_id = next_node->dest;
             //remove from tentative
-            deleteNode(tentative, next_node->dest, next_node->cost, next_node->nexthop);
+            deleteNode(&tentative, next_node->dest, next_node->cost, next_node->nexthop);
             //add to confirmed
             confirmed = insert_front(confirmed, next_node->dest, next_node->cost, next_node->nexthop);
         }
@@ -89,27 +104,40 @@ void dijkstra(int srcnode)
         int next_n = next_node->nexthop;
         //recalculate neighbor of next
         neighborlist = getNeighbors(next_node_id);
+        
+        printSummary(confirmed, tentative, it_count, next_node_id, next_c, next_n);
+        printf("NEIGHBORS: \n");
+        printList_(neighborlist);
         //for every neighbor of the next, compute cost to reach neighbors
         while(isEmpty_(neighborlist) != 0){
+            
             int curr_neighbor = neighborlist->data;
-            int n_c = fw_table[curr_neighbor].cost;
-            int n_d = fw_table[curr_neighbor].destID;
-            int n_n = fw_table[curr_neighbor].nexthopID;
+            // int n_c = fw_table[curr_neighbor].cost;
+            // int n_d = fw_table[curr_neighbor].destID;
+            // int n_n = fw_table[curr_neighbor].nexthopID;
+            int n_c = getLinkCost(next_node_id, curr_neighbor);
+            int n_d = curr_neighbor;
+            int n_n = (next_node_id == srcnode) ? n_d : curr_neighbor;
             cost = next_c + n_c;
+            printf("inspecting neighbor %d: <%d, %d, %d>\n", curr_neighbor, n_d, n_c, n_n );
             //check if neighbor is in tentative and update cost if necessary
             SP_Node* found_t = find(tentative, n_d, n_c, n_n);
             if(found_t != tentative){
+                printf("<%d,%d, %d> was found in TENTATIVE\n", n_d, n_c, n_n);
                 if(cost < found_t->cost){
+                    printf("new cost %d was found to be cheaper than %d\n", cost, found_t->cost);
                     //update cost
                     found_t->cost = cost;
                     //update next hop
-                    found_t->nexthop = next_node;
+                    found_t->nexthop = next_node_id;
                 }
             }
             else{
                 SP_Node* found_c = find(confirmed, n_d, n_c, n_n);
                 //add neighbor to tentative if not found on either tentative or confirmed
                 if(found_c == confirmed){
+                    printf("<%d,%d, %d> was found not found in either (pushed to tentative now)\n", n_d, n_c, n_n);
+
                     tentative = push(tentative, n_d, n_c, n_n);
                 }
             }
@@ -126,5 +154,20 @@ void dijkstra(int srcnode)
 }
 
 int main(){
+    //set up example from class
+
+    //fw_table represents the actual connections 'up' in the graph
+    setConnection(0,1, 5);
+    setConnection(1,2, 3);
+    setConnection(2,3, 2);
+    setConnection(0,2, 10);
+    setConnection(1,3, 11);
     
+    int globalMyID = 3;
+    // fw_table[globalMyID].destID = 2;
+    // fw_table[globalMyID].cost = 2
+
+    dijkstra(globalMyID);
+
+    return 0;   
 }
