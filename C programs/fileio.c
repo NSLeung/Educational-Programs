@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 #define CHUNK 2
 
@@ -54,6 +56,11 @@ int main(int argc, char** argv){
    // while ((nread = fread(buf, 1, sizeof buf, in_file)) > 0)
    //      fwrite(buf, 1, nread, stdout);
 
+  char line[256];
+	while(fgets(line, sizeof(line), in_file)){
+		// printf("%s", line);
+    
+	}
    
    //close stream
    fclose(in_file);
