@@ -65,8 +65,10 @@ SP_Node* get_min(SP_Node* head)
         }
         curr = curr->next;
     }
-    printf("min found for <%d, %d, %d>\n", d, min_cost, n);
+    // printf("min found for <%d, %d, %d>\n", d, min_cost, n);
+
     SP_Node *ret = find(head, d, min_cost, n, DEFAULT);
+    // printf("ret <%d, %d, %d>\n", ret->dest, ret->cost, ret->nexthop);
     return ret;
 
     //now return location in linked list
@@ -113,8 +115,11 @@ void dijkstra(int srcnode)
         
         // printf("hello\n");
         if(it_count != 0){
+            // printf("here's tentative before calling min::\n");
+            printList(tentative);
             //make next the node in Tentative with the lowest cost
             next_node = get_min(tentative);
+            
             next_node_id = next_node->dest;
             next_c = next_node->cost;
             next_n = next_node->nexthop;
@@ -187,9 +192,9 @@ void dijkstra(int srcnode)
 
 
 }
-
-int main(){
-    //set up example from class
+void test_1()
+{
+//set up example from class
     memset(neighborConnections, 0, sizeof(neighborConnections[0][0]) * 256 * 256);
     //fw_table represents the actual connections 'up' in the graph
     setConnection(0,1, 5);
@@ -206,6 +211,26 @@ int main(){
     // fw_table[globalMyID].cost = 2
 
     dijkstra(globalMyID);
+}
+void test_2(){
+    memset(neighborConnections, 0, sizeof(neighborConnections[0][0]) * 256 * 256);
+    setConnection(0, 1, 2);
+    setConnection(0,3,1);
+    setConnection(1,3,2);
+    setConnection(1,2,3);
+    setConnection(2,3,3);
+    setConnection(2,4,1);
+    setConnection(3,4,1);
+    setConnection(2,5,5);
+    setConnection(4,5,2);
+    setConnection(0,2,5);
 
+    dijkstra(0);
+
+}
+
+int main(){
+    
+    test_2();
     return 0;   
 }

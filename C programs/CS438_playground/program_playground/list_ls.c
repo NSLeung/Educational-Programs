@@ -56,6 +56,7 @@ int isEmpty(SP_Node* head)
 
 SP_Node* find(SP_Node* head, int dest_f, int cost_f, int nexthop_f, int opt)
 {
+
     SP_Node* curr = head;
     if(curr==NULL){
         return NULL;
@@ -71,7 +72,12 @@ SP_Node* find(SP_Node* head, int dest_f, int cost_f, int nexthop_f, int opt)
         }
     }
     else{
-        while((curr->dest != dest_f) && (curr->cost != cost_f) && (curr->nexthop != nexthop_f)){
+        // printf("default flag here...\n");
+        // printf("to find: <%d, %d, %d>\n", dest_f, cost_f, nexthop_f);
+        // printf("starting curr: <%d, %d, %d>\n", curr->dest, curr->cost, curr->nexthop);
+
+        while((curr->dest != dest_f) || (curr->cost != cost_f) || (curr->nexthop != nexthop_f)){
+            // printf("I'm still in it!\n");
             if(curr->next == NULL){
                 return NULL;
             }
@@ -80,7 +86,8 @@ SP_Node* find(SP_Node* head, int dest_f, int cost_f, int nexthop_f, int opt)
             }
         }
     }
-    
+    // printf("found <%d, %d, %d>\n", curr->dest, curr->cost, curr->nexthop);
+
     return curr;
 }
 
@@ -99,7 +106,7 @@ void deleteNode(SP_Node **head_ref, int dest_f, int cost_f, int nexthop_f)
   
     // Search for the key to be deleted, keep track of the 
     // previous node as we need to change 'prev->next' 
-    while((temp != NULL) && (temp->dest != dest_f) && (temp->cost != cost_f) && (temp->nexthop != nexthop_f))
+    while((temp != NULL) && ((temp->dest != dest_f) || (temp->cost != cost_f) || (temp->nexthop != nexthop_f)))
     { 
         prev = temp; 
         temp = temp->next; 
