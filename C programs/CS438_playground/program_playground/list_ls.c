@@ -29,8 +29,8 @@ SP_Node* insert_front(SP_Node* head, int dest_i, int cost_i, int nexthop_i)
 
 SP_Node* push(SP_Node* head, int dest_i, int cost_i, int nexthop_i){
     if(head == NULL){
-        printf("starting new list!\n");
-        //new element
+        // printf("starting new list!\n");
+        // new element
         head = create(dest_i, cost_i, nexthop_i,NULL);
         
     }
@@ -54,21 +54,33 @@ int isEmpty(SP_Node* head)
     return head==NULL;
 }
 
-SP_Node* find(SP_Node* head, int dest_f, int cost_f, int nexthop_f)
+SP_Node* find(SP_Node* head, int dest_f, int cost_f, int nexthop_f, int opt)
 {
     SP_Node* curr = head;
     if(curr==NULL){
         return NULL;
     }
-
-    while((curr->dest != dest_f) && (curr->cost != cost_f) && (curr->nexthop != nexthop_f)){
-        if(curr->next == NULL){
-            return NULL;
-        }
-        else{
-            curr = curr->next;
+    if(opt == DEST_FLAG){
+        while(curr->dest != dest_f){
+            if(curr->next == NULL){
+                return NULL;
+            }
+            else{
+                curr = curr->next;
+            }
         }
     }
+    else{
+        while((curr->dest != dest_f) && (curr->cost != cost_f) && (curr->nexthop != nexthop_f)){
+            if(curr->next == NULL){
+                return NULL;
+            }
+            else{
+                curr = curr->next;
+            }
+        }
+    }
+    
     return curr;
 }
 
@@ -122,13 +134,17 @@ void teardown(SP_Node *head)
    Note that different data types need different specifier in printf() */
 void printList(struct SP_Node *SP_Node) 
 { 
+    printf("---------------------------\n");
     while (SP_Node != NULL) 
     { 
         // (*fptr)(SP_Node); 
-        printf("dest: %d | cost: %d | nexthop: %d\n", SP_Node->dest, SP_Node->cost, SP_Node->nexthop);
+        // printf("dest: %d | cost: %d | nexthop: %d\n", SP_Node->dest, SP_Node->cost, SP_Node->nexthop);
+        printf("<dest, cost, nexthop> : <%d, %d, %d>\n", SP_Node->dest, SP_Node->cost, SP_Node->nexthop);
         SP_Node = SP_Node->next; 
     } 
-    printf("nothing left to print!\n");
+    printf("\\ nothing left to print!\n");
+    printf("---------------------------\n");
+
 } 
 
 //node methods
@@ -154,7 +170,7 @@ Node* insert_front_(Node* head, int data)
 
 Node* push_(Node* head, int data){
     if(head == NULL){
-        printf("starting new list!\n");
+        // printf("starting new list!\n");
         //new element
         head = create_(data,NULL);
         
@@ -251,11 +267,17 @@ void teardown_(Node *head)
    Note that different data types need different specifier in printf() */
 void printList_(struct Node *Node) 
 { 
+    printf("---------------------------\n");
+
+    printf("<");
     while (Node != NULL) 
     { 
         // (*fptr)(Node); 
-        printf("data: %d", Node->data);
+        printf("%d, ", Node->data);
         Node = Node->next; 
     } 
-    printf("done printing!\n");
+
+    printf(">\nnothing left to print!\n");
+    printf("---------------------------\n");
+
 } 
