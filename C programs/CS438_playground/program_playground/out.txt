@@ -1,0 +1,758 @@
+---------------------------------------
+LEVEL 0
+Inspecting next: <0, 0, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 0: 
+---------------------------
+<1, 7, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 1: <1, 4, 1>
+TENTATIVE::
+---------------------------
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<1,4, -1> was found not found in either (pushed to tentative now)
+
+
+
+inspecting neighbor 7: <7, 8, 7>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <1, 4, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<7,8, -1> was found not found in either (pushed to tentative now)
+
+
+
+---------------------------
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 1
+Inspecting next: <1, 4, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 1: 
+---------------------------
+<0, 2, 7, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 0: <0, 8, 1>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 2: <2, 12, 1>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<2,12, -1> was found not found in either (pushed to tentative now)
+
+
+
+inspecting neighbor 7: <7, 15, 1>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+\ nothing left to print!
+---------------------------
+Node <7, ?, ?> was found in TENTATIVE
+
+
+
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 2
+Inspecting next: <7, 8, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 7: 
+---------------------------
+<0, 1, 6, 8, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 0: <0, 16, 7>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 1: <1, 19, 7>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 6: <6, 9, 7>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<6,9, -1> was found not found in either (pushed to tentative now)
+
+
+
+inspecting neighbor 8: <8, 15, 7>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<8,15, -1> was found not found in either (pushed to tentative now)
+
+
+
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 3
+Inspecting next: <6, 9, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 6: 
+---------------------------
+<5, 7, 8, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 5: <5, 11, 6>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<5,11, -1> was found not found in either (pushed to tentative now)
+
+
+
+inspecting neighbor 7: <7, 10, 6>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 8: <8, 15, 6>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+\ nothing left to print!
+---------------------------
+Node <8, ?, ?> was found in TENTATIVE
+
+
+
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 4
+Inspecting next: <5, 11, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 5: 
+---------------------------
+<2, 3, 4, 6, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 2: <2, 15, 5>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+\ nothing left to print!
+---------------------------
+Node <2, ?, ?> was found in TENTATIVE
+
+
+
+inspecting neighbor 3: <3, 25, 5>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<3,25, -1> was found not found in either (pushed to tentative now)
+
+
+
+inspecting neighbor 4: <4, 21, 5>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 25, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+<4,21, -1> was found not found in either (pushed to tentative now)
+
+
+
+inspecting neighbor 6: <6, 13, 5>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 25, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 25, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 5
+Inspecting next: <2, 12, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 25, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 2: 
+---------------------------
+<1, 3, 5, 8, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 1: <1, 20, 2>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 25, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 3: <3, 19, 2>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 25, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+Node <3, ?, ?> was found in TENTATIVE
+new cost 19 was found to be cheaper than 25
+
+
+
+inspecting neighbor 5: <5, 16, 2>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 8: <8, 14, 2>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <8, 15, -1>
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+Node <8, ?, ?> was found in TENTATIVE
+new cost 14 was found to be cheaper than 15
+
+
+
+---------------------------
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 6
+Inspecting next: <8, 14, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 8: 
+---------------------------
+<2, 6, 7, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 2: <2, 16, 8>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 6: <6, 20, 8>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 7: <7, 21, 8>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 7
+Inspecting next: <3, 19, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 3: 
+---------------------------
+<2, 4, 5, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 2: <2, 26, 3>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 4: <4, 28, 3>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+Node <4, ?, ?> was found in TENTATIVE
+
+
+
+inspecting neighbor 5: <5, 33, 3>
+TENTATIVE::
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+\ nothing left to print!
+---------------------------
+---------------------------------------
+LEVEL 8
+Inspecting next: <4, 21, -1>
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+TENTATIVE::
+---------------------------
+\ nothing left to print!
+---------------------------
+NEIGHBORS of 4: 
+---------------------------
+<3, 5, >
+nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 3: <3, 30, 4>
+TENTATIVE::
+---------------------------
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+
+inspecting neighbor 5: <5, 31, 4>
+TENTATIVE::
+---------------------------
+\ nothing left to print!
+---------------------------
+CONFIRMED::
+---------------------------
+<dest, cost, nexthop> : <4, 21, -1>
+<dest, cost, nexthop> : <3, 19, -1>
+<dest, cost, nexthop> : <8, 14, -1>
+<dest, cost, nexthop> : <2, 12, -1>
+<dest, cost, nexthop> : <5, 11, -1>
+<dest, cost, nexthop> : <6, 9, -1>
+<dest, cost, nexthop> : <7, 8, -1>
+<dest, cost, nexthop> : <1, 4, -1>
+<dest, cost, nexthop> : <0, 0, -1>
+\ nothing left to print!
+---------------------------
+
+
+

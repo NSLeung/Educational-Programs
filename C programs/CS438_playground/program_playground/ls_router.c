@@ -148,7 +148,9 @@ void dijkstra(int srcnode)
             // int n_n = fw_table[curr_neighbor].nexthopID;
             int n_c = getLinkCost(next_node_id, curr_neighbor);
             int n_d = curr_neighbor;
-            int n_n = (next_node_id == srcnode) ? n_d : next_node_id;
+            // int n_n = (next_node_id == srcnode) ? n_d : next_node_id;
+            int n_n = (next_node_id == srcnode) ? n_d : next_n;
+
             cost = next_c + n_c;
             printf("inspecting neighbor %d: <%d, %d, %d>\n", curr_neighbor, n_d, cost, n_n );
             //check if neighbor is in tentative and update cost if necessary (just find by id)
@@ -164,7 +166,7 @@ void dijkstra(int srcnode)
                     found_t->cost = cost;
                     //update next hop
                     // found_t->nexthop = next_node_id;
-                    found_t->nexthop = next_n;
+                    found_t->nexthop = next_n;  //should inherit from previous
                 }
             }
             else{
@@ -174,8 +176,11 @@ void dijkstra(int srcnode)
                 //add neighbor to tentative if not found on either tentative or confirmed
                 if(found_c == NULL){
                     printf("<%d,%d, %d> was found not found in either (pushed to tentative now)\n", n_d, cost, n_n);
+                    // printf("<%d,%d, %d> was found not found in either (pushed to tentative now)\n", n_d, cost, next_n);
 
                     tentative = push(tentative, n_d, cost, n_n);
+                    // tentative = push(tentative, n_d, cost, next_n);
+
                 }
             }
             //move to next neighbor
@@ -228,9 +233,29 @@ void test_2(){
     dijkstra(0);
 
 }
+void test_3(){
+    memset(neighborConnections, 0, sizeof(neighborConnections[0][0]) * 256 * 256);
+    setConnection(0, 1, 4);
+    setConnection(0,7,8);
+    setConnection(1,7,11);
+    setConnection(1,2,8);
+    setConnection(7,8,7);
+    setConnection(7,6,1);
+    setConnection(8,6,6);
+    setConnection(2,8,2);
+    setConnection(2,3,7);
+    setConnection(2,5,4);
+    setConnection(6,5,2);
+    setConnection(3,5,14);
+    setConnection(3,4,9);
+    setConnection(4,5,10);
+
+    dijkstra(0);
+
+}
 
 int main(){
     
-    test_2();
+    test_3();
     return 0;   
 }
