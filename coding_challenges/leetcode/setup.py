@@ -72,8 +72,8 @@ if __name__ == "__main__":
     # assumption: python is the only outlier that gets trimmed (cpp, c is fine cuz I really only use those languages)
     extension = sys.argv[2]
     
-    # set up folder
-    path = str(sys.argv[1]) + " - " + struct[sys.argv[1]]
+    # set up folder (hopefully in a way that doesn't contain spaces)
+    path = str(sys.argv[1]) + "_" + struct[sys.argv[1]].replace(" ", "_")
     if not os.path.exists(path):
         os.makedirs(path)
     # if python, should just be able to run python3 (hopefully without permission)
