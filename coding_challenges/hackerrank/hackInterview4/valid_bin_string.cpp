@@ -11,11 +11,14 @@ using namespace std;
 string ltrim(const string &);
 string rtrim(const string &);
 
-int valid_seq(string s, int idx, int stride){
-    if(stoi(s.substr(idx, stride)) == 0){
-        
-    }
-}
+// int valid_seq(string s, int idx, int stride){
+//     if(stoi(s.substr(idx, stride)) == 0){
+//         for(int i = 0; i < stride; i++){
+//             s[idx + i] = "1";
+//             valid_seq(s, idx + 1, stride);
+//         }
+//     }
+// }
 
 /*
  * Complete the 'minimumMoves' function below.
@@ -30,10 +33,11 @@ int minimumMoves(string s, int d) {
     int cnt = 0;
     for(int i = 0; i < s.length() - d + 1; i++){
         if(stoi(s.substr(i, d)) == 0){
+            s[i+d-1] = '1';
             cnt++;
         }
     }
-    return d;
+    return cnt;
 }
 
 int main()
