@@ -66,6 +66,17 @@ def dutchBois(a):
             # printArray(a)
             print(a)
     return a 
+def test(nums):
+    for i in range(len(nums)):
+        index_three = len(nums)-1
+        Index_one = 0
+        if nums[i] == 3:
+            nums[i], nums[Index_one] = nums[len(nums) - 1], nums[i]
+            index_three -= 1
+        if nums[i] == 1:
+            nums[i], nums[Index_one] = nums[Index_one], nums[i]
+            Index_one += 1
+    return nums
     
         
 # example
@@ -74,5 +85,6 @@ Input = [3, 3, 2, 1, 3, 2, 1]
 # print (sortNums([3, 3, 2, 1, 3, 2, 1]))
 
 print(Input)
-print(dutchBois(Input))
+# print(dutchBois(Input))
+print(test(Input))
 # [1, 1, 2, 2, 3, 3, 3]
