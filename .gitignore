@@ -1,2 +1,6 @@
-Python\ Scripts/reddit_scraper_project/
-Python\ Scripts/class_res_scraper/
+Python Scripts/reddit_scraper_project/
+Python Scripts/class_res_scraper/
+*
+!/**/
+!*.*
+.vscode/
