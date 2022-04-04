@@ -1,9 +1,12 @@
-#include <vector>
-#include <iostream>
-using namespace std;
+// #include <vector>
+// #include <iostream>
+// using namespace std;
+
+#include "util.h"
+
 //assumptions: array is sorted
 //iterative, returns index of found target
-int binary_search_it(vector<int> nums, int target, int left, int right) {
+int Algorithms::binary_search_it(vector<int> nums, int target, int left, int right) {
     while(left <= right) {
         //compute mid
         int mid = left + (right - left)/2;
@@ -23,7 +26,7 @@ int binary_search_it(vector<int> nums, int target, int left, int right) {
 }
 
 
-int binary_search_r(vector<int> nums, int target, int left, int right){
+int Algorithms::binary_search_r(vector<int> nums, int target, int left, int right){
     if(right >= left) {
         int mid = left + (right - left) / 2;
         if(nums[mid]==target){
@@ -41,8 +44,8 @@ int binary_search_r(vector<int> nums, int target, int left, int right){
 }
 
 int main(){
-
+    Algorithms a;
     vector<int> nums = { 2, 3, 4, 10, 40 };
-    cout << binary_search_it(nums, 10, 0, nums.size()-1) << endl;
+    cout << a.binary_search_it(nums, 10, 0, nums.size()-1) << endl;
     return 0;
 }

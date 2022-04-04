@@ -1,6 +1,11 @@
 Python Scripts/reddit_scraper_project/
 Python Scripts/class_res_scraper/
+coding_challenges/leetcode/misc/
 *
 !/**/
 !*.*
 .vscode/
+coding_challenges/leetcode/misc/blah.cpp
+
+#cmake stuff
+coding_challenges/leetcode/build

@@ -15,6 +15,7 @@ public:
             for(int j = 0; j < coins.size(); j++){
                 //simulate taking coins
                 if(coins[j] <= i) {
+                    printf("taking this coin: dp[%d] = %d\n", i, dp[i]);
                     //utilize dp array to look for previous solved subproblem, 1 + means use the coin
                     dp[i] = std::min(dp[i], 1 + dp[i - coins[j]]);
                 }
